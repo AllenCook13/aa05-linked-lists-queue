@@ -1,4 +1,5 @@
 const { SinglyLinkedNode } = require("./01-singly-linked-list");
+const { DoublyLinkedList, DoublyLinkedNode } = require("./02-doubly-linked-list");
 
 class Queue {
 
@@ -10,18 +11,31 @@ class Queue {
 
     enqueue(val) {
         // Add node to end of queue (linked list)
-
-        // Your code here 
-
-        // Write your hypothesis on the time complexity of this method here
+        let newNode = new DoublyLinkedNode(val)
+        if(!this.head) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.tail.next = newNode;
+            newNode.prev = this.tail;
+            this.tail = newNode;
+        }
+        this.length++
+        return this.length;
     }
 
     dequeue() {
-        // Remove node from front of queue (linked list)
-
-        // Your code here 
-
-        // Write your hypothesis on the time complexity of this method here
+        if(!this.head) return null;
+        let removed = this.head.value;
+        if(!this.head.next) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.head = this.head.next;
+            this.head.prev = null;
+        }
+        this.length--;
+        return removed;
     }
 
 }

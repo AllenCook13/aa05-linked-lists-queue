@@ -14,64 +14,71 @@ class SinglyLinkedList {
 
     addToHead(val) {
         // Add node of val to head of linked list
-
-        // Your code here 
-
+        let newNode = new SinglyLinkedNode(val);
+        this.length++;
+        if(!this.head) {
+            this.head = newNode;
+            return this;
+        }
+        newNode.next = this.head;
+        this.head = newNode;
+        return this;
         // Write your hypothesis on the time complexity of this method here
     }
 
     addToTail(val) {
-        // There are bugs in this method! Fix them!!!
-
-        // Add node of val to tail of linked list
-        let newNode = new SinglyLinkedNode(data);
-
-        if (!head) {
-            head = newNode;
-            return head;
+        let newNode = new SinglyLinkedNode(val);
+        this.length++;
+        if (!this.head) {
+            this.head = newNode;
+            return this;
         }
-
-        let curr = head;
-        while (curr) {
-            curr = current.next;
+        let curr = this.head;
+        while (curr.next) {
+            curr = curr.next;
         }
         curr.next = newNode;
 
-        return head;
-
-        // Write your hypothesis on the time complexity of this method here
+        return this;
     }
 
     removeFromHead() {
-        // Remove node at head
-
-        // Your code here 
-
-        // Write your hypothesis on the time complexity of this method here
+        if(!this.head) return undefined;
+        let removed = this.head;
+        this.head = this.head.next;
+        this.length--;
+        return removed;
     }
 
     removeFromTail() {
-        // Remove node at tail
-
-        // Your code here 
-
-        // Write your hypothesis on the time complexity of this method here
+        if(!this.head) return undefined;
+        let cur = this.head;
+        this.length--;
+        if(!cur.next) {
+            this.head = null;
+            return cur;
+        }
+        while(cur.next.next) {
+            cur = cur.next;
+        }
+        let removed = cur.next;
+        cur.next = null;
+        return removed;
     }
 
     peekAtHead() {
-        // Return the value of head node
-
-        // Your code here 
-
-        // Write your hypothesis on the time complexity of this method here
+        if(!this.head) return undefined;
+        return this.head.value;
     }
 
     print() {
-        // Print out the linked list
-
-        // Your code here 
-
-        // Write your hypothesis on the time complexity of this method here
+        if(this.head) {
+            let cur = this.head;
+            while(cur) {
+                console.log(cur.value);
+                cur = cur.next;
+            }
+        }
     }
 }
 
